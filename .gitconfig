@@ -1,0 +1,23 @@
+[user]
+	email = sabonya@sm.rim.or.jp
+	name = sabonya
+[alias]
+	graph = log --graph --date-order --all --pretty=format:'%h %Cred%d %Cgreen%ad %Cblue%cn %Creset%s' --date=short
+[core]
+	# autocrlf = input
+	autocrlf = false
+	excludesfile = ~/.gitignore
+	quotepath = false
+[fetch]
+    prune = true
+[pull]
+    prune = true
+[push]
+	default = current
+[credential]
+	helper = store
+
+[url "git@github.com:"]
+	pushinsteadof = https://github.com/
+[pull]
+	rebase = false

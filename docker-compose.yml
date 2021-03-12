@@ -1,0 +1,21 @@
+version: "3"
+
+services:
+  selenium_server:
+    # docker run -d -p 4444:4444 -p 5900:5900 -v /dev/shm:/dev/shm selenium/standalone-firefox-debug:latest
+    container_name: selenium_server
+    image: selenium/standalone-firefox-debug:latest
+    volumes:
+      - /dev/shm:/dev/shm
+    ports:
+      - 4444:4444
+      - 5900:5900
+
+  selenium_client:
+    container_name: selenium_client
+    build:
+      context: .
+      dockerfile: Dockerfile
+    tty: true
+    volumes:
+      - ./app:/app
