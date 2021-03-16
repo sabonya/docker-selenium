@@ -46,7 +46,7 @@ COPY ./IPAexfont00401/ipaexg.ttf /root/.fonts/.
 COPY ./IPAexfont00401/ipaexm.ttf /root/.fonts/.
 
 # [download and install latest geckodriver for linux or mac (selenium webdriver)](https://gist.github.com/cgoldberg/4097efbfeb40adf698a7d05e75e0ff51 "download and install latest geckodriver for linux or mac (selenium webdriver)")
-COPY ./app/install_geckodriver.bash /app/
+COPY ./app/ /app/
 RUN bash /app/install_geckodriver.bash
 
 # Define default command.

@@ -1,5 +1,5 @@
-.bash_history
-.bash_logout
+.*_history
+.*sh_logout
 .cache
 .composer
 .config
@@ -8,14 +8,11 @@
 .fzf
 .lesshst
 .local
-.php_history
 .ssh
 .subversion
 .viminfo
 .wget-hsts
 bin
-wd
-wk
 
 #ignore thumbnails created by windows
 Thumbs.db
@@ -40,6 +37,9 @@ Thumbs.db
 *.vspscc
 *_i.c
 *_p.c
+
+wd
+wk
 
 *bak
 *bk
