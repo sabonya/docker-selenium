@@ -28,7 +28,7 @@
 FROM ubuntu:20.10
 # FROM ubuntu:latest
 
-SHELL ["/bin/bash", "-c"]
+SHELL ["/bin/bash", "-o", "pipefail", "-c"]
 
 # ここはchromeのバージョンに合わせて変える。
 ARG CHROME_DRIVER_URL=https://chromedriver.storage.googleapis.com/86.0.4240.22/chromedriver_linux64.zip
