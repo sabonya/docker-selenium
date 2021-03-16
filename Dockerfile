@@ -10,13 +10,24 @@ ARG CHROME_DRIVER_URL=https://chromedriver.storage.googleapis.com/86.0.4240.22/c
 # 環境変数設定
 ENV TZ=Asia/Tokyo
 ENV DEBIAN_FRONTEND=noninteractive
-ENV LANG ja_JP.UTF-8
-ENV PYTHONIOENCODIND utf_8
+ENV PYTHONIOENCODIND=utf_8
 
-# 色々とインストール
 RUN \
-    apt-get update && \
-    apt-get install -y python3.8 curl wget unzip python3.8-distutils gnupg sudo apt-utils tzdata && \
+    apt-get update
+RUN \
+    apt-get install -y apt-utils
+RUN \
+    apt-get install -y locales-all language-pack-ja-base language-pack-ja jq && \
+    localedef -f UTF-8 -i ja_JP ja_JP.UTF-8
+ENV LANGUAGE=ja_JP.UTF-8
+ENV LANG=ja_JP.UTF-8
+ENV LC_ALL=ja_JP.UTF-8
+
+RUN \
+    locale-gen ja_JP.UTF-8 && \
+    dpkg-reconfigure locales
+RUN \
+    apt-get install -y python3.8 curl wget unzip python3.8-distutils gnupg sudo tzdata && \
     wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
     apt-get update && \
@@ -31,7 +42,6 @@ RUN \
     mv chromedriver /usr/local/bin/. && \
     rm -f chromedriver_linux64.zip && \
     rm -f get-pip.py && \
-    apt-get install -y language-pack-ja-base language-pack-ja jq && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 RUN locale-gen ja_JP.UTF-8
