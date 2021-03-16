@@ -1,6 +1,5 @@
 #!/usr/bin/bash
 
-apt-get install -y jq
 install_dir="/usr/local/bin"
 json=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest)
 if [ "$(uname)" == "Darwin" ]; then

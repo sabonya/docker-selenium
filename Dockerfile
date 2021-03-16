@@ -31,7 +31,9 @@ RUN \
     mv chromedriver /usr/local/bin/. && \
     rm -f chromedriver_linux64.zip && \
     rm -f get-pip.py && \
-    apt-get install -y language-pack-ja-base language-pack-ja
+    apt-get install -y language-pack-ja-base language-pack-ja jq && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
 RUN locale-gen ja_JP.UTF-8
 
 # Pythonライブラリインストール
