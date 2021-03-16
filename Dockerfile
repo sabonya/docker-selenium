@@ -62,8 +62,8 @@ RUN locale-gen ja_JP.UTF-8
 
 # Pythonライブラリインストール
 RUN \
-    pip install --upgrade pip && \
-    pip install selenium beautifulsoup4
+    pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir selenium beautifulsoup4
 
 # フォントの設定。Dockerfileと同じ場所にIPAフォントを配置しておく。
 # https://moji.or.jp/ipafont/ipafontdownload/
