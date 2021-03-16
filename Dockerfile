@@ -47,7 +47,7 @@ RUN \
     echo "deb http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google-chrome.list && \
     apt-get update && \
     apt-get install -y google-chrome-stable && \
-    curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
+    wget -q https://bootstrap.pypa.io/get-pip.py && \
     rm -f /usr/bin/python /usr/bin/python3 && \
     ln /usr/bin/python3.8 /usr/bin/python && \
     ln /usr/bin/python3.8 /usr/bin/python3 && \
