@@ -1,29 +1,3 @@
-
-# FROM python:latest
-
-# ENV PYTHONIOENCODING utf-8
-# WORKDIR /app
-
-# RUN apk add --update \
-#     # wget \
-#     # Add chromium and dependences
-#     # udev \
-#     # ttf-freefont \
-#     # chromium \
-#     # chromium-chromedriver \
-#     # geckodriver \
-#     # Add Japanese font
-#     && mkdir noto \
-#     && wget -P /app/noto https://noto-website.storage.googleapis.com/pkgs/NotoSansCJKjp-hinted.zip \
-#     && unzip /app/noto/NotoSansCJKjp-hinted.zip -d /app/noto \
-#     && mkdir -p /usr/share/fonts/noto \
-#     && cp /app/noto/*.otf /usr/share/fonts/noto \
-#     && chmod 644 -R /usr/share/fonts/noto/ \
-#     && fc-cache -fv \
-#     && rm -rf /app/noto \
-#     # Add selenium
-#     && pip install selenium
-
 # [【日記】dockerでpython+selenium環境構築｜Kei｜note](https://note.com/kei198403/n/neac807d407d4 "【日記】dockerでpython+selenium環境構築｜Kei｜note")
 FROM ubuntu:20.10
 # FROM ubuntu:latest
@@ -71,39 +45,7 @@ RUN mkdir -p /root/.fonts
 COPY ./IPAexfont00401/ipaexg.ttf /root/.fonts/.
 COPY ./IPAexfont00401/ipaexm.ttf /root/.fonts/.
 
-# RUN \
-#     install_dir="/usr/local/bin" && \
-#     version=$(wget -qO- https://chromedriver.storage.googleapis.com/LATEST_RELEASE) \
-#     if [[ $(uname) == "Darwin" ]]; then \
-#     url=https://chromedriver.storage.googleapis.com/$version/chromedriver_mac64.zip \
-#     elif [[ $(uname) == "Linux" ]]; then \
-#     url=https://chromedriver.storage.googleapis.com/$version/chromedriver_linux64.zip \
-#     else \
-#     echo "can't determine OS" && \
-#     exit 1 \
-#     fi \
-#     curl -s -L "$url" | tar -xz && \
-#     chmod +x chromedriver && \
-#     sudo mv chromedriver "$install_dir" && \
-#     echo "installed chromedriver binary in $install_dir"
-
 # [download and install latest geckodriver for linux or mac (selenium webdriver)](https://gist.github.com/cgoldberg/4097efbfeb40adf698a7d05e75e0ff51 "download and install latest geckodriver for linux or mac (selenium webdriver)")
-RUN apt-get install -y jq
-# RUN \
-#     install_dir="/usr/local/bin" && \
-#     json=$(curl -s https://api.github.com/repos/mozilla/geckodriver/releases/latest) && \
-#     if [[ $(uname) == "Darwin" ]]; then \
-#     url=$(echo "$json" | jq -r '.assets[].browser_download_url | select(contains("macos")) | select(contains("asc")|not)'); \
-#     elif [[ $(uname) == "Linux" ]]; then \
-#     url=$(echo "$json" | jq -r '.assets[].browser_download_url | select(contains("linux64")) | select(contains("asc")|not)'); \
-#     else \
-#     echo "can't determine OS" && \
-#     exit 1; \
-#     fi && \
-#     curl -s -L "$url" | tar -xz && \
-#     chmod +x geckodriver && \
-#     sudo mv geckodriver "$install_dir" && \
-#     echo "installed geckodriver binary in $install_dir"
 COPY ./app/install_geckodriver.bash /app/
 RUN bash /app/install_geckodriver.bash
 
